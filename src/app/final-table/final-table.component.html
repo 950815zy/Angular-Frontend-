@@ -1,0 +1,29 @@
+<html>
+  <app-header></app-header>
+  <body>
+    <!-- <h2>{{currentProjectTitle}}</h2> -->
+    <app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor>
+    <div id="container">
+        <table id="formula" contenteditable="true">
+          <tr>
+            <th id="header" colspan="100%">QUANTITY SURVEY</th>
+          </tr>
+          <tr>
+            <th *ngFor="let column of columnList">{{column | uppercase}}</th>
+          </tr>
+          <tr *ngFor="let row of wholeTable">
+            <td *ngFor="let rowname of columnList">{{row[rowname]}}</td>
+          </tr>
+        </table>
+    </div>
+    <div id="editFormula">
+      <!-- <p>Edit Quantity Survey Template</p> -->
+      <nav>
+      <a  routerLink="/checkBox">Edit Quantity Survey Template</a>
+      <input type="submit" value="Submit" onChange="this.form.submit()">
+      </nav>
+      <router-outlet></router-outlet>
+      
+    </div>
+  </body>
+</html>

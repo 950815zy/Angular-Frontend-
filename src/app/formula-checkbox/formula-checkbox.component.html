@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <app-header></app-header>
+    <app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor>
+    <body> 
+
+        <div id="inner">
+            <table id = "checkbox">
+                <tr>
+                    <th colspan="100%">Project Scope Fields</th>
+                </tr>
+                <tr *ngFor="let col of columnlist">
+                    <input type="checkbox" value={{col}} ng-checked="selection.indexOf(col) != -1" (click)="toggleSelection(col)" >
+                {{col}}
+                </tr>
+
+            </table>
+            <div class="row">
+                <table id="checkbox2" cellpadding="20">
+                
+                    <tr *ngFor="let rowElement of rowData; let id = index" [attr.Field]="rowElement.Field">
+                        <td>
+                            <label>Field</label><br>
+                            <input [value]="rowElement.Field" (input)="rowElement.Field=$event.target.value" type="text" ></td>
+                        <td>
+                        <td>
+                            <label>Type</label><br>
+                            <select [value]="rowElement.Type" (input)="rowElement.Type=$event.target.value" name="Type">
+                                <option value="Number">Number</option>
+                                <option value="Text">Text</option>
+                                <option value="Formula">Formula</option>
+                            </select>
+                        <td>
+                        <td *ngIf = "rowElement.Type === 'Formula'" >
+                            <label >Formula</label><br>
+                            <input [value]="rowElement.Formula" (input)="rowElement.Formula=$event.target.value" type="text" >
+                        </td>
+                        <td id="empty-cell" *ngIf = "rowElement.Type != 'Formula'" ></td>
+
+                        <td><button (click)="deleteRow(rowElement.Field)" class="btn"><i class="fa fa-trash"></i></button></td>
+                    </tr>        
+                </table>
+            </div>
+
+        <div id="addField">
+                <label font-size="13px">Add Field  </label>
+                <button (click)="toggle()" class="btn"><i class="fa fa-plus" ></i></button>
+        </div>
+        </div>
+        <div id="save">
+                <button (click)="callall()" routerLink="/finalTable" >SAVE</button>
+                <!-- <input (click)="callall()" routerLink="/finalTable" type="submit" value="SAVE">                 -->
+        </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+

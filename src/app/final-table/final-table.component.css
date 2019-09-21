@@ -1,0 +1,80 @@
+#formula {
+    font-family: "Arial", Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 900px;
+    margin-right: 10px;
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-bottom: 1px;
+    grid: none;
+    font: "Arial";
+    padding-bottom: 0px;
+    border: 1px solid grey;
+    display: inline-block;
+}
+
+#formula #header {
+    background-color : rgb(119, 117, 117);
+    text-align: left;
+    color:white;
+    font-weight: normal;
+    font: "Flatpen Regular";
+    padding-bottom: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+#formula td, #formula th {
+max-width:100%;
+border: none;
+padding: 5px;
+text-align: initial;
+width: 1%;
+}
+
+#formula th {
+padding-top: 5px;
+padding-bottom: 5px;
+background-color: rgb(241, 239, 239);
+color: white;
+text-align: center;
+color: black;
+font: "Arial";
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+border: 1px solid rgb(206, 202, 202);
+}
+
+#container{
+    /* width: 1000px;*/
+    height: 530px; 
+    overflow-y: scroll;
+    overflow-x: none;
+}
+
+
+#editFormula a{
+    color: rgb(57, 140, 207);
+    font-weight: bolder;
+    width: 50%;
+    margin-left: 130px;
+    margin-top: 30px;
+    font-size: 13px;
+    display: inline-block;
+    vertical-align: middle;  
+    text-decoration: none;
+}
+
+#editFormula input{
+    margin-left: 130px;
+    display: inline-block;
+    vertical-align: middle; 
+    background-color: rgb(238, 99, 34);
+    height: 22px; 
+    width: 70px;
+    font-size: 10px;
+    color: white;
+    font-weight: normal;
+    margin-top: 30px;
+}

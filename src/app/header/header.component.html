@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<div id = "header">
+<p-toolbar>
+    <div class="ui-toolbar-group-left">
+        <i class="pi pi-th-large"></i>
+        <span style="color:white">Resource Management</span>
+    </div>
+        <a id="pname">{{pname}}</a>
+    <div class="ui-toolbar-group-right">
+        <i class="pi pi-user" style="font-size: 2.5em"></i>
+        <a style="color: black; vertical-align: middle">Cost Manager</a>
+        <i class=" pi pi-question-circle " style="font-size: 2.5em "></i>
+    </div>
+</p-toolbar>
+</div>
+
+<div>
+<p-sidebar [(visible)]="display " styleClass="ui-sidebar-sm">
+    <h1 style="font-size:1em; color: white">Resource</h1>
+    <h1 style="font-size:1em; color: white">Project</h1>
+    <h1 style="font-size:1em; color: white">Formula</h1>
+    <h1 style="font-size:1em; color: white">Change Request</h1>
+    <h1 style="font-size:1em; color: white">Budget</h1>
+    <h1 style="font-size:1em; color: white">Prime Supplier</h1>
+    <h1 style="font-size:1em; color: white">Change Control</h1>
+    <h1 style="font-size:1em; color: white">Contract</h1>
+    <h1 style="font-size:1em; color: white">Approved Change</h1>
+    <h1 style="font-size:1em; color: white">Summary</h1>
+</p-sidebar>
+
+<button pButton type="button" class="ui-button-raised ui-button-rounded" (click)="display=true " icon="pi pi-arrow-right "></button>
+</div>
