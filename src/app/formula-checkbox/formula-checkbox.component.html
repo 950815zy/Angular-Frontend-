@@ -11,7 +11,7 @@
                 <tr>
                     <th colspan="100%">Project Scope Fields</th>
                 </tr>
-                <tr *ngFor="let col of columnlist">
+                <tr *ngFor="let col of options">
                     <input type="checkbox" value={{col}} ng-checked="selection.indexOf(col) != -1" (click)="toggleSelection(col)" >
                 {{col}}
                 </tr>

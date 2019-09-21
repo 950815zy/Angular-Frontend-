@@ -29,6 +29,8 @@ export class ResourceWholeTableComponent implements OnInit {
       this.subscription = this.getdeliver.deliverAnnounced$.subscribe(
       table => {console.log(table); this.finalTable = table});
       this.getColumn();
+
+
   }
 
 
@@ -78,11 +80,11 @@ export class ResourceWholeTableComponent implements OnInit {
     this.resourceList = this.resourceList.filter(obj => {return codeInProj.includes(obj.cost_code)});
     this.makeTable();
   
+  }  
+
+  edit(){
+    this.getdeliver.announceDeliver(this.wholeTable);
+    this.getdeliver.colDeliver(this.columnlist);
   }
-
-
-    
-  
-  
  
 }

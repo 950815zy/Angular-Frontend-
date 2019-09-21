@@ -21,7 +21,7 @@
     <div id="editFormula">
       <!-- <p>Edit Quantity Survey Template</p> -->
       <nav>
-      <a  routerLink="/checkBox">Edit Quantity Survey Template</a>
+      <a (click)="edit()"  routerLink="/checkBox">Edit Quantity Survey Template</a>
       <input type="submit" value="Submit" onChange="this.form.submit()">
       </nav>
       <router-outlet></router-outlet>

@@ -4,7 +4,7 @@ import { Resource } from 'src/app/Model/Resource';
 import { AngularWaitBarrier } from 'blocking-proxy/built/lib/angular_wait_barrier';
 import { CommonModule } from '@angular/common';  
 import { BrowserModule } from '@angular/platform-browser';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { THIS_EXPR, collectExternalReferences } from '@angular/compiler/src/output/output_ast';
 import { Subscription } from 'rxjs';
 import { ProjectList } from '../Model/ProjectList';
 
@@ -23,6 +23,8 @@ interface rowObj {
 })
 
 export class FormulaCheckboxComponent implements OnInit {
+  constructor(private getservice: GetResourceRequestService, 
+    private getdeliver : DeliverTableService){}
   resourceList: Resource[];
   columnlist: string[];
   wholeTable: object[][] = [];
@@ -37,57 +39,57 @@ export class FormulaCheckboxComponent implements OnInit {
     Type : '',
     Formula : ''
   }];
-
+  options : string[];
   requestColumnURL = 'http://192.168.1.2:8080/Project1/res/getColumnNames';
-  requestWholeURL = 'http://192.168.1.2:8080/Project1/res/displayWhole';
+
+  
   subscription: Subscription;
 
   ngOnInit(): void { 
   // handleResource()  
-    this.getColumn();
-  }
-  
-  constructor(private getservice: GetResourceRequestService, 
-    private getdeliver : DeliverTableService){
+    // this.getColumn();
+    this.subscription = this.getdeliver.deliverAnnounced$.subscribe(
+      data => {this.wholeTable = data; console.log(data)});
+    this.subscription = this.getdeliver.deleverCol$.subscribe(
+      (colList) => {this.columnlist = colList; console.log(colList)});
+      this.getColumn();
   }
 
   getColumn(){
     this.getservice.getResponse(this.requestColumnURL).subscribe(
       (data: string[]) => {
-        this.columnlist = data;
-        // console.log(this.columnlist);
-        this.getWhole();
-      },
+        this.options = data; console.log(this.options)},
       (error) => {this.errorMessage = error; }
     );
   }
 
-  getWhole(){
-    this.getservice.getResponse(this.requestWholeURL).subscribe(
-      (data: Resource[]) => {
-        this.resourceList = data;
-        // console.log(this.resourceList);
-        this.makeTable();
-      },
-      (error) => {this.errorMessage = error; }
-    );
-  }
+  // getWhole(){
+  //   this.getservice.getResponse(this.requestWholeURL).subscribe(
+  //     (data: Resource[]) => {
+  //       this.resourceList = data;
+  //       // console.log(this.resourceList);
+  //       this.makeTable();
+  //     },
+  //     (error) => {this.errorMessage = error; }
+  //   );
+  // }
 
-  makeTable(){
-    for(let row of this.resourceList){
-      let rowcnt: object[] = [];
-      for(let columnname of this.columnlist){
-        rowcnt.push({columnname: ''});
-      }
-      rowcnt['name'] = row.name;
-      rowcnt['cost_code'] = row.cost_code;
-      for(let columnpair of row.columns){
-        rowcnt[columnpair[0]] = columnpair[1];
-      }
+  // makeTable(){
+  //   this.wholeTable = [];
+  //   for(let row of this.resourceList){
+  //     let rowcnt: object[] = [];
+  //     for(let columnname of this.columnlist){
+  //       rowcnt.push({columnname: ''});
+  //     }
+  //     rowcnt['name'] = row.name;
+  //     rowcnt['cost_code'] = row.cost_code;
+  //     for(let columnpair of row.columns){
+  //       rowcnt[columnpair[0]] = columnpair[1];
+  //     }
 
-      this.wholeTable.push(rowcnt);
-    }
-  }
+  //     this.wholeTable.push(rowcnt);
+  //   }
+  // }
   
   toggleSelection(col) {
     let idx = this.selection.indexOf(col);
@@ -143,9 +145,6 @@ export class FormulaCheckboxComponent implements OnInit {
   dealPidChange(proj: ProjectList){
     this.getdeliver.pidDeliver(proj.project_name);
     this.currentProjectTitle = proj.project_name;
-    let codeInProj = proj.resourceCode.map(a => a.cost_code);
-    this.resourceList = this.resourceList.filter(obj => {return codeInProj.includes(obj.cost_code)});
-    this.makeTable();
   
   }
 
