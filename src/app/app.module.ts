@@ -30,6 +30,7 @@ import {SplitButtonModule} from 'primeng/splitbutton';
 import {DialogModule} from 'primeng/dialog';
 import {FileUploadModule} from 'primeng/fileupload';
 import {ProgressBarModule} from 'primeng/progressbar';
+import { ResourceTableComponent } from './resource-table/resource-table.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,8 @@ import {ProgressBarModule} from 'primeng/progressbar';
     ProjectSelctorComponent,
     DisplayResourceByProjectComponent,
     HeaderComponent,
-    ProjectSelctorComponent
+    ProjectSelctorComponent,
+    ResourceTableComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,50 @@
+.outer {
+    overflow: hidden;
+}
+
+.leftTable{
+    width: 40%;
+    float:right;
+    font-family: "Arial", Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-right: 100px;
+    margin-left: 10px;
+    margin-bottom: 1px;
+    grid: none;
+    padding-bottom: 0px;
+    border: 1px solid grey;
+}
+
+.leftTable .header {
+    background-color : rgb(119, 117, 117);
+    text-align: left;
+    color:white;
+    font-weight: normal;
+    font: "Flatpen Regular";
+    padding-bottom: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.leftTable td, .leftTable th {
+max-width:100%;
+border: none;
+padding: 5px;
+text-align: initial;
+width: 1%;
+}
+
+.leftTable th {
+border-collapse: collapse;
+padding-top: 5px;
+padding-bottom: 5px;
+background-color: rgb(241, 239, 239);
+color: white;
+text-align: center;
+color: black;
+font: "Arial";
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+border: 1px solid rgb(206, 202, 202);
+}

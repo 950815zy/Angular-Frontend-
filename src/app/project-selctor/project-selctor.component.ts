@@ -11,7 +11,7 @@ import { GetRequestService } from '../service/get-request.service';
 export class ProjectSelctorComponent implements OnInit {
   @Output() pidChange = new EventEmitter<ProjectList>();
 
-  requestProjectURL = 'http://192.168.1.2:8080/Project1/project/display';
+  requestProjectURL = 'http://192.168.1.172:8080/Project1/project/display';
   projectList: ProjectList[];
   selectedProject: ProjectList;
 

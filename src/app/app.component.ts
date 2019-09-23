@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestService } from './service/request.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Project';
+  constructor(private requestservice: RequestService){}
+
+  ngOnInit() {
+    this.requestservice.startDeliverTable();
+  }
 }

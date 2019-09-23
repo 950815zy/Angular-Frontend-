@@ -11,8 +11,8 @@
     </tr>
   </table> -->
 
-
-  <p-table [value]="resourceListByProject">
+<!-- 
+  <p-table id="right" [value]="resourceListByProject">
       <ng-template pTemplate="header">
           <tr>
               <th>Resource Name</th>
@@ -28,4 +28,20 @@
   </p-table>
 
 
-</div>
+</div> -->
+
+<div class="leftTable">
+    <table contenteditable="true" >
+        <tr>
+          <th class="header" colspan="100%">QUANTITY SURVEY</th>
+        </tr>
+        <tr>
+          <th *ngFor="let columnname of columnlist">{{columnname | uppercase}}</th>
+        </tr>
+        <tr *ngFor="let row of resourceListByProject">
+
+          <td *ngFor="let columnname of columnlist">
+            {{row[columnname]}}</td>
+        </tr>
+      </table>
+    </div>

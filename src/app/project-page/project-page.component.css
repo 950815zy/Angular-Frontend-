@@ -1,0 +1,94 @@
+.outer {
+    overflow: hidden;
+    
+}
+.leftTable{
+
+    width: 40%;
+    float:left;
+    font-family: "Arial", Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-right: 10px;
+    margin-left: 8%;
+    margin-bottom: 1px;
+    grid: none;
+    padding-bottom: 0px;
+}
+
+.leftTable .header {
+    border-collapse: collapse;
+    text-align: center;
+    background-color : rgb(119, 117, 117);
+    color:white;
+    font-weight: normal;
+    font: "Flatpen Regular";
+    padding-bottom: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.leftTable td, .leftTable th {
+border-collapse: collapse;
+max-width:100%;
+border: none;
+text-align: initial;
+width: 1%;
+}
+
+.leftTable th {
+border-collapse: collapse;
+background-color: rgb(241, 239, 239);
+color: white;
+text-align: center;
+color: black;
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+}
+
+.rightTable{
+
+    width: 40%;
+    float:right;
+    font-family: "Arial", Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-right: 8%;
+    margin-left: 10px;
+    margin-bottom: 1px;
+    grid: none;
+    padding-bottom: 0px;
+}
+
+.rightTable .header {
+    border-collapse: collapse;
+    text-align: center;
+    background-color : rgb(119, 117, 117);
+    color:white;
+    font-weight: normal;
+    font: "Flatpen Regular";
+    padding-bottom: 15px;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.rightTable td, .rightTable th {
+border-collapse: collapse;
+max-width:100%;
+border: none;
+text-align: initial;
+width: 1%;
+}
+
+.rightTable th {
+border-collapse: collapse;
+padding-top: 5px;
+padding-bottom: 5px;
+background-color: rgb(241, 239, 239);
+color: white;
+text-align: center;
+color: black;
+font-style: normal;
+font-weight: bold;
+font-size: 13px;
+border: 1px solid rgb(206, 202, 202);
+}

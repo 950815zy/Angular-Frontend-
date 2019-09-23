@@ -14,10 +14,10 @@ export class DisplayResourceByProjectComponent implements OnInit {
   constructor(private getservice: GetRequestService) { }
 
   resourceListByProject: Resource[];
-  requestResourceByProjectURL = 'http://192.168.1.2:8080/Project1/res/displayByProjectId/';
+  requestResourceByProjectURL = 'http://192.168.1.172:8080/Project1/res/displayByProjectId/';
 
   errorMessage: string;
-  columnlist: string[] = ['cost_code', 'name'];
+  columnlist: string[];
 
 
   ngOnInit() {
@@ -41,10 +41,12 @@ export class DisplayResourceByProjectComponent implements OnInit {
     if (id === undefined) { id = this.id; }
     this.getservice.getResponse(this.requestResourceByProjectURL + '/' + id).subscribe(
       (data: Resource[]) => {
-        this.resourceListByProject = data; console.log(data);
+        this.resourceListByProject = data; console.log(data); this.columnlist = Object.keys(data[0]);
       },
       (error) => this.errorMessage = error
     );
   }
+
+  
 
 }

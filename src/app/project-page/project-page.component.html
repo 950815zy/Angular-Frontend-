@@ -1,54 +1,66 @@
-<style>
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-  height: 300px; /* Should be removed. Only for demonstration */
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-</style>
-
+<!-- <h1>project-page</h1>
 <div><app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor> </div>
 <div class="row">
   <div class="column" style="background-color: aliceblue;">
-    <app-resource-whole-table></app-resource-whole-table>
+    <app-resource-table></app-resource-table>
   </div>
   <div class="column" style="background-color: bisque;">
     <app-display-resource-by-project [id]="pid"></app-display-resource-by-project>
   </div>
-</div>
-<!-- <html>
-<app-project-selctor (pidChange)="dealPidChange($event)" ></app-project-selctor>
-  <body>
+</div> -->
+<html>
+  
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 
-    <div id="container">
-        <table id="formula" contenteditable="true" >
-          <tr>
-            <th id="header" colspan="100%">QUANTITY SURVEY</th>
-          </tr>
-          <tr>
-            <th *ngFor="let column of columnlist">{{column | uppercase}}</th>
-          </tr>
-          <tr *ngFor="let row of wholeTable">
-            <td *ngFor="let rowname of columnlist">{{row[rowname]}}</td>
-          </tr>
-        </table>
-    </div>
-    <div id="editFormula">
-      <p>Edit Quantity Survey Template</p> -->
-      <!-- <nav>
-      <a (click)="edit()"  routerLink="/checkBox">Edit Quantity Survey Template</a>
-      <input type="submit" value="Submit" onChange="this.form.submit()">
-      </nav>
-      <router-outlet></router-outlet>
+<app-header></app-header>
+
+<div><app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor> </div>
+<div class="outer">
+<div class="leftTable">
+<table contenteditable="true" >
+    <tr>
+      <th class="header" colspan="100%">
+          Resourse Catelog
+          <button style="margin-right: 10px; background-color: rgb(248, 105, 38); color: white; float: right;" (click)="move()"><i class="fa fa-share"></i>
+
+          </button>
+          </th>
       
+    </tr>
+    <tr>
+      <th *ngFor="let columnname of columnlist">{{columnname | uppercase}}</th>
+    </tr>
+    <tr *ngFor="let row of resourceListAll" >
+        <td>
+        {{row.cost_code}}</td>
+        <td>
+            <input type="checkbox" value={{row.name}} ng-checked="row.name != -1" (click)="toggleSelection(row.name)" >
+            {{row.name}}
+        </td>
+    </tr>
+
+  </table>
+</div>
+
+<div class="rightTable" >
+    <table contenteditable="true" >
+        <tr>
+          <th class="header" colspan="100%">Project
+          </th>
+        </tr>
+        <tr>
+          <th *ngFor="let columnname of columnlist">{{columnname | uppercase}}</th>
+        </tr>
+        <tr *ngFor="let row of resourceListByProject">
+
+          <td *ngFor="let columnname of columnlist">
+            {{row[columnname]}}</td>
+        </tr>
+      </table>
     </div>
-  </body>
-</html>  -->
+</div>
+</html>

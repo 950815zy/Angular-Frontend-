@@ -40,7 +40,7 @@ export class FormulaCheckboxComponent implements OnInit {
     Formula : ''
   }];
   options : string[];
-  requestColumnURL = 'http://192.168.1.2:8080/Project1/res/getColumnNames';
+  requestColumnURL = 'http://192.168.1.172:8080/Project1/res/getColumnNames';
   finalCols = [];
 
   
