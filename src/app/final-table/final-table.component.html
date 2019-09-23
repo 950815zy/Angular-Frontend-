@@ -4,15 +4,20 @@
     <!-- <h2>{{currentProjectTitle}}</h2> -->
     <app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor>
     <div id="container">
-        <table id="formula" contenteditable="true">
+        <table id="formula" contenteditable>
           <tr>
             <th id="header" colspan="100%">QUANTITY SURVEY</th>
           </tr>
           <tr>
-            <th *ngFor="let column of columnList">{{column | uppercase}}</th>
+            <th *ngFor="let column of columnList">{{column.name | uppercase}}</th>
           </tr>
           <tr *ngFor="let row of wholeTable">
-            <td *ngFor="let rowname of columnList">{{row[rowname]}}</td>
+            <td  *ngFor="let rowname of columnList" (input)="handleCellChange($event, row, rowname)">
+              <div *ngIf="!rowname.editable">{{row[rowname.name]}}</div>
+              <div *ngIf="rowname.editable && rowname.type != 'Formula'">
+                <input id="input" [value]="row[rowname.name] ? row[rowname.name] : ''" (input)="handleCellChange($event, row, rowname)" [type]="rowname.type | lowercase"/></div>
+              <div *ngIf="rowname.type === 'Formula'">{{calculateFormula(rowname, row)}}</div>  
+            </td>
           </tr>
         </table>
     </div>

@@ -41,6 +41,7 @@ export class FormulaCheckboxComponent implements OnInit {
   }];
   options : string[];
   requestColumnURL = 'http://192.168.1.2:8080/Project1/res/getColumnNames';
+  finalCols = [];
 
   
   subscription: Subscription;
@@ -49,47 +50,19 @@ export class FormulaCheckboxComponent implements OnInit {
   // handleResource()  
     // this.getColumn();
     this.subscription = this.getdeliver.deliverAnnounced$.subscribe(
-      data => {this.wholeTable = data; console.log(data)});
+      data => {this.wholeTable = data; });
     this.subscription = this.getdeliver.deleverCol$.subscribe(
-      (colList) => {this.columnlist = colList; console.log(colList)});
+      (colList) => {this.columnlist = colList;});
       this.getColumn();
   }
 
   getColumn(){
     this.getservice.getResponse(this.requestColumnURL).subscribe(
       (data: string[]) => {
-        this.options = data; console.log(this.options)},
+        this.options = data; },
       (error) => {this.errorMessage = error; }
     );
   }
-
-  // getWhole(){
-  //   this.getservice.getResponse(this.requestWholeURL).subscribe(
-  //     (data: Resource[]) => {
-  //       this.resourceList = data;
-  //       // console.log(this.resourceList);
-  //       this.makeTable();
-  //     },
-  //     (error) => {this.errorMessage = error; }
-  //   );
-  // }
-
-  // makeTable(){
-  //   this.wholeTable = [];
-  //   for(let row of this.resourceList){
-  //     let rowcnt: object[] = [];
-  //     for(let columnname of this.columnlist){
-  //       rowcnt.push({columnname: ''});
-  //     }
-  //     rowcnt['name'] = row.name;
-  //     rowcnt['cost_code'] = row.cost_code;
-  //     for(let columnpair of row.columns){
-  //       rowcnt[columnpair[0]] = columnpair[1];
-  //     }
-
-  //     this.wholeTable.push(rowcnt);
-  //   }
-  // }
   
   toggleSelection(col) {
     let idx = this.selection.indexOf(col);
@@ -103,6 +76,14 @@ export class FormulaCheckboxComponent implements OnInit {
   } 
 
   saveSelection(){
+    this.selection.forEach(e => {
+      this.finalCols = [...this.finalCols, {name: e, editable: false}];
+    });
+
+    this.rowData.forEach(e => {
+      this.finalCols = [...this.finalCols, {name: e.Field, editable: true, type: e.Type, formula: e.Formula}];
+    });
+
     for(let i = 0; i < this.rowData.length; i++){
       this.selection.push(this.rowData[i].Field);
     }
@@ -111,7 +92,8 @@ export class FormulaCheckboxComponent implements OnInit {
   }
 
   announce() {
-    this.getdeliver.colDeliver(this.selection);
+    // this.getdeliver.colDeliver(this.selection);
+    this.getdeliver.colDeliver(this.finalCols);
   }
 
   announceTable() {
@@ -147,5 +129,13 @@ export class FormulaCheckboxComponent implements OnInit {
     this.currentProjectTitle = proj.project_name;
   
   }
+
+  deleteRow(Field){
+    for(let i = 0; i < this.rowData.length; ++i){
+        if (this.rowData[i].Field === Field) {
+            this.rowData.splice(i,1);
+        }
+    }
+}
 
 }

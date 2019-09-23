@@ -19,7 +19,9 @@
             </table>
             <div class="row">
                 <table id="checkbox2" cellpadding="20">
-                
+                    <tr>
+                        <th colspan="100%"> Quantity Survey Field</th>
+                    </tr>
                     <tr *ngFor="let rowElement of rowData; let id = index" [attr.Field]="rowElement.Field">
                         <td>
                             <label>Field</label><br>
@@ -35,7 +37,7 @@
                         <td>
                         <td *ngIf = "rowElement.Type === 'Formula'" >
                             <label >Formula</label><br>
-                            <input [value]="rowElement.Formula" (input)="rowElement.Formula=$event.target.value" type="text" >
+                            <input [value]="rowElement.Formula" (input)="rowElement.Formula=$event.target.value" ng-pattern="^[-+]?[0-9]*\.?[0-9]+$" type="text" >
                         </td>
                         <td id="empty-cell" *ngIf = "rowElement.Type != 'Formula'" ></td>
 

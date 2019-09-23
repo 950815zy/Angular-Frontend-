@@ -38,7 +38,6 @@ export class ResourceWholeTableComponent implements OnInit {
     this.getservice.getResponse(this.requestColumnURL).subscribe(
       (data: string[]) => {
         this.columnlist = data;
-        console.log(this.columnlist);
         this.getWhole();
       },
       (error) => {this.errorMessage = error; }
@@ -49,7 +48,6 @@ export class ResourceWholeTableComponent implements OnInit {
     this.getservice.getResponse(this.requestWholeURL).subscribe(
       (data: Resource[]) => {
         this.resourceList = data;
-        console.log(this.resourceList);
         this.makeTable();
       },
       (error) => {this.errorMessage = error; }

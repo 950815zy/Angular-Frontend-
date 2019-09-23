@@ -15,7 +15,6 @@
 }
 </style>
 
-<h1>project-page</h1>
 <div><app-project-selctor (pidChange)="dealPidChange($event)"></app-project-selctor> </div>
 <div class="row">
   <div class="column" style="background-color: aliceblue;">
@@ -25,3 +24,31 @@
     <app-display-resource-by-project [id]="pid"></app-display-resource-by-project>
   </div>
 </div>
+<!-- <html>
+<app-project-selctor (pidChange)="dealPidChange($event)" ></app-project-selctor>
+  <body>
+
+    <div id="container">
+        <table id="formula" contenteditable="true" >
+          <tr>
+            <th id="header" colspan="100%">QUANTITY SURVEY</th>
+          </tr>
+          <tr>
+            <th *ngFor="let column of columnlist">{{column | uppercase}}</th>
+          </tr>
+          <tr *ngFor="let row of wholeTable">
+            <td *ngFor="let rowname of columnlist">{{row[rowname]}}</td>
+          </tr>
+        </table>
+    </div>
+    <div id="editFormula">
+      <p>Edit Quantity Survey Template</p> -->
+      <!-- <nav>
+      <a (click)="edit()"  routerLink="/checkBox">Edit Quantity Survey Template</a>
+      <input type="submit" value="Submit" onChange="this.form.submit()">
+      </nav>
+      <router-outlet></router-outlet>
+      
+    </div>
+  </body>
+</html>  -->

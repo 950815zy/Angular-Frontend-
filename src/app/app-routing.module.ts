@@ -27,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'try',
-    component: DisplayResourceByProjectComponent
+    component: ProjectPageComponent
   }
 
 ]
